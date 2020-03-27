@@ -1,12 +1,16 @@
+const video = document.querySelector("#video");
+const start = document.querySelector("#start");
 const constraints = {
     'video': true,
-    'audio': true
+    'audio': true,
 }
 
-navigator.mediaDevices.getUserMedia(constraints)
+start.addEventListener("click", () =>{
+    navigator.mediaDevices.getUserMedia(constraints)
     .then(stream => {
-        console.log('Got MediaStream: ',stream);
+        video.srcObject = stream;
     })
     .catch(error => {
         console.error('Error accessing media devices.', error);
     });
+}, false);
